@@ -1,0 +1,551 @@
+<!-- container.component.html -->
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-md-4">
+      <!-- Content for the first column -->
+      <div class="bg-light p-3">
+        <div>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a #tab1Link class="nav-link active" (click)="switchTab(tab1Link, 'tab-1-content')" id="tab-1"
+                data-bs-toggle="tab" href="#tab-1-content" role="tab" aria-controls="tab-1-content"
+                aria-selected="true">
+                One Variable
+              </a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a #tab2Link class="nav-link" (click)="switchTab(tab2Link, 'tab-2-content')" id="tab-2"
+                data-bs-toggle="tab" href="#tab-2-content" role="tab" aria-controls="tab-2-content"
+                aria-selected="false">
+                Multiple Variables
+              </a>
+            </li>
+          </ul>
+
+          <div class="tab-content mt-3">
+            <div class="tab-pane fade show active" id="tab-1-content" role="tabpanel" aria-labelledby="tab-1">
+              <!-- Content for the first tab -->
+              <div class="well">
+                <div>
+                  <label class="control-label" id="var_C1-label" for="var_C1-selectized">
+                    <h4 style="color: #242B84">Variable</h4>
+                  </label>
+                  <select [(ngModel)]="selectedOption" class="form-control" (change)="variableChange($event)">
+                    <option value="Gross Domestic Product">Gross Domestic Product</option>
+                    <option value="Final Consumption Expenditure of Households and NPISHs">Final Consumption Expenditure
+                      of Households and NPISHs</option>
+                    <option value="Government Final Consumption Expenditure">Government Final Consumption Expenditure
+                    </option>
+                    <option value="Gross Fixed Capital Formation">Gross Fixed Capital Formation</option>
+                    <option value="GFCF in Machinery and Equipment">GFCF in Machinery and Equipment</option>
+                    <option value="GFCF in Construction">GFCF in Construction</option>
+                    <option value="GFCF in other products">GFCF in other products</option>
+                    <option value="Exports of goods and services">Exports of goods and services</option>
+                    <option value="Imports of goods and services">Imports of goods and services</option>
+                    <option value="Persons in Employment">Persons in Employment</option>
+                    <option value="Unemployment registered (BA)">Unemployment registered (BA)</option>
+                    <option value="Unemployment Rate (BA)">Unemployment Rate (BA)</option>
+                    <option value="Unemployment (ILO)">Unemployment (ILO)</option>
+                    <option value="Unemployment Rate (ILO)">Unemployment Rate (ILO)</option>
+                    <option value="Consumer Price Index">Consumer Price Index</option>
+                    <option value="Harmonized Consumer Price Index">Harmonized Consumer Price Index</option>
+                    <option value="GDP Deflator">GDP Deflator</option>
+                    <option value="Unit Labor Costs">Unit Labor Costs</option>
+                    <option value="Net lending/net borrowing as a percentage of GDP">Net lending/net borrowing as a
+                      percentage of GDP</option>
+                    <option value="Current account balance as a percentage of GDP">Current account balance as a
+                      percentage
+                      of GDP</option>
+                    <option value="Oil Price">Oil Price</option>
+                    <option value="Exchange Rate">Exchange Rate</option>
+                    <option value="Policy Interest Rate">Policy Interest Rate</option>
+                    <option value="World Trade Growth">World Trade Growth</option>
+                  </select>
+                </div>
+
+                <div id="t_C1" class="form-group" role="radiogroup">
+                  <label class="control-label" id="t_C1-label" for="t_C1">
+                    <h4 style="color: #242B84">Target Year</h4>
+                  </label>
+                  <div class="shiny-options-group">
+                    <label class="radio-inline">
+                      <input type="radio" name="t_C1" value="0" (change)="targetYearChange($event)"
+                        [(ngModel)]="selectedTargetYear">
+                      <span>t</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="t_C1" value="1" (change)="targetYearChange($event)"
+                        [(ngModel)]="selectedTargetYear">
+                      <span>t + 1</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="t_C1" value="2" (change)="targetYearChange($event)"
+                        [(ngModel)]="selectedTargetYear">
+                      <span>t + 2</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div id="t_C1" class="form-group" role="radiogroup">
+                  <label class="control-label" id="t_C1-label" for="t_C1">
+                    <h4 style="color: #242B84">Depiction</h4>
+                  </label>
+                  <div class="shiny-options-group">
+                    <label class="radio-inline">
+                      <input type="radio" name="dep_C1" value="scatter" (change)="discriptionChange($event)"
+                        [(ngModel)]="selectedDiscription">
+                      <span>Dots Chart</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="dep_C1" value="line" (change)="discriptionChange($event)"
+                        [(ngModel)]="selectedDiscription">
+                      <span>Line Chart</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="dep_C1" value="bar" (change)="discriptionChange($event)"
+                        [(ngModel)]="selectedDiscription">
+                      <span>Bar Chart</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div id="t_C1" class="form-group" role="radiogroup">
+                  <label class="control-label" id="t_C1-label" for="t_C1">
+                    <h4 style="color: #242B84">Depiction Range</h4>
+                  </label>
+                  <app-range-slider (dataToParent)="receiveDataFromChild($event)"></app-range-slider>
+                </div>
+
+                <div id="t_C1" class="form-group" role="radiogroup">
+                  <label class="control-label" id="t_C1-label" for="t_C1">
+                    <h4 style="color: #242B84">Release by</h4>
+                  </label>
+                  <div class="shiny-options-group">
+                    <label class="radio-inline">
+                      <input type="radio" name="relby_C1" value="Month" [(ngModel)]="releaseBy"
+                        (change)="releaseByChange($event)">
+                      <span>Month</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="relby_C1" value="Quarter" [(ngModel)]="releaseBy"
+                        (change)="releaseByChange($event)">
+                      <span>Quarter</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="relby_C1" value="Season" [(ngModel)]="releaseBy"
+                        (change)="releaseByChange($event)">
+                      <span>Season</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div id="t_C1" class="form-group" role="checkbox">
+                  <label class="control-label" id="t_C1-label" for="t_C1">
+                  </label>
+                  <div class="shiny-options-group">
+                    <label class="checkbox-inline">
+                      <input type="checkbox" name="qu_C2" [(ngModel)]="checkboxValues[1]" value="1"
+                        (change)="checkboxChange()">
+                      <span>1</span>
+                    </label>
+                    <label class="checkbox-inline">
+                      <input type="checkbox" name="qu_C2" [(ngModel)]="checkboxValues[2]" value="2"
+                        (change)="checkboxChange()">
+                      <span>2</span>
+                    </label>
+                    <label class="checkbox-inline">
+                      <input type="checkbox" name="qu_C2" [(ngModel)]="checkboxValues[3]" value="3"
+                        (change)="checkboxChange()">
+                      <span>3</span>
+                    </label>
+                    <label class="checkbox-inline">
+                      <input type="checkbox" name="qu_C2" [(ngModel)]="checkboxValues[4]" value="4"
+                        (change)="checkboxChange()">
+                      <span>4</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="btn-select-checkbox">
+                  <button style="width: auto;" id="selectall_qu_D1" type="button"
+                    class="btn btn-info action-button btn-sm shiny-bound-input" (click)="selectAll()">Select/Deselect
+                    all</button>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="tab-2-content" role="tabpanel" aria-labelledby="tab-2">
+              <!-- Content for the second tab -->
+              <div class="well">
+                <div>
+                  <label class="control-label" id="var_C1-label" for="var_C1-selectized">
+                    <h4 style="color: #242B84">Variable 1</h4>
+                  </label>
+                  <select [(ngModel)]="selectedOption" class="form-control">
+                    <option value="Gross Domestic Product">Gross Domestic Product</option>
+                    <option value="Final Consumption Expenditure of Households and NPISHs">Final Consumption Expenditure
+                      of Households and NPISHs</option>
+                    <option value="Government Final Consumption Expenditure">Government Final Consumption Expenditure
+                    </option>
+                    <option value="Gross Fixed Capital Formation">Gross Fixed Capital Formation</option>
+                    <option value="GFCF in Machinery and Equipment">GFCF in Machinery and Equipment</option>
+                    <option value="GFCF in Construction">GFCF in Construction</option>
+                    <option value="GFCF in other products">GFCF in other products</option>
+                    <option value="Exports of goods and services">Exports of goods and services</option>
+                    <option value="Imports of goods and services">Imports of goods and services</option>
+                    <option value="Persons in Employment">Persons in Employment</option>
+                    <option value="Unemployment registered (BA)">Unemployment registered (BA)</option>
+                    <option value="Unemployment Rate (BA)">Unemployment Rate (BA)</option>
+                    <option value="Unemployment (ILO)">Unemployment (ILO)</option>
+                    <option value="Unemployment Rate (ILO)">Unemployment Rate (ILO)</option>
+                    <option value="Consumer Price Index">Consumer Price Index</option>
+                    <option value="Harmonized Consumer Price Index">Harmonized Consumer Price Index</option>
+                    <option value="GDP Deflator">GDP Deflator</option>
+                    <option value="Unit Labor Costs">Unit Labor Costs</option>
+                    <option value="Net lending/net borrowing as a percentage of GDP">Net lending/net borrowing as a
+                      percentage of GDP</option>
+                    <option value="Current account balance as a percentage of GDP">Current account balance as a
+                      percentage
+                      of GDP</option>
+                    <option value="Oil Price">Oil Price</option>
+                    <option value="Exchange Rate">Exchange Rate</option>
+                    <option value="Policy Interest Rate">Policy Interest Rate</option>
+                    <option value="World Trade Growth">World Trade Growth</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="control-label" id="var_C1-label" for="var_C1-selectized">
+                    <h4 style="color: #242B84">Variable 2</h4>
+                  </label>
+                  <select [(ngModel)]="selectedOption2" class="form-control">
+                    <option value="Gross Domestic Product">Gross Domestic Product</option>
+                    <option value="Final Consumption Expenditure of Households and NPISHs">Final Consumption Expenditure
+                      of Households and NPISHs</option>
+                    <option value="Government Final Consumption Expenditure">Government Final Consumption Expenditure
+                    </option>
+                    <option value="Gross Fixed Capital Formation">Gross Fixed Capital Formation</option>
+                    <option value="GFCF in Machinery and Equipment">GFCF in Machinery and Equipment</option>
+                    <option value="GFCF in Construction">GFCF in Construction</option>
+                    <option value="GFCF in other products">GFCF in other products</option>
+                    <option value="Exports of goods and services">Exports of goods and services</option>
+                    <option value="Imports of goods and services">Imports of goods and services</option>
+                    <option value="Persons in Employment">Persons in Employment</option>
+                    <option value="Unemployment registered (BA)">Unemployment registered (BA)</option>
+                    <option value="Unemployment Rate (BA)">Unemployment Rate (BA)</option>
+                    <option value="Unemployment (ILO)">Unemployment (ILO)</option>
+                    <option value="Unemployment Rate (ILO)">Unemployment Rate (ILO)</option>
+                    <option value="Consumer Price Index">Consumer Price Index</option>
+                    <option value="Harmonized Consumer Price Index">Harmonized Consumer Price Index</option>
+                    <option value="GDP Deflator">GDP Deflator</option>
+                    <option value="Unit Labor Costs">Unit Labor Costs</option>
+                    <option value="Net lending/net borrowing as a percentage of GDP">Net lending/net borrowing as a
+                      percentage of GDP</option>
+                    <option value="Current account balance as a percentage of GDP">Current account balance as a
+                      percentage of GDP</option>
+                    <option value="Oil Price">Oil Price</option>
+                    <option value="Exchange Rate">Exchange Rate</option>
+                    <option value="Policy Interest Rate">Policy Interest Rate</option>
+                    <option value="World Trade Growth">World Trade Growth</option>
+                  </select>
+                </div>
+                <div id="t_C1" class="form-group" role="radiogroup">
+                  <label class="control-label" id="t_C1-label" for="t_C1">
+                    <h4 style="color: #242B84">Target Year</h4>
+                  </label>
+                  <div class="shiny-options-group">
+                    <label class="radio-inline">
+                      <input type="radio" name="t_C2" value="0" checked="checked">
+                      <span>t</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="t_C2" value="1">
+                      <span>t + 1</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="t_C2" value="2">
+                      <span>t + 2</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div id="t_C1" class="form-group" role="radiogroup">
+                  <label class="control-label" id="t_C1-label" for="t_C1">
+                    <h4 style="color: #242B84">Depiction</h4>
+                  </label>
+                  <div class="shiny-options-group">
+                    <label class="radio-inline">
+                      <input type="radio" name="dep_C1" value="0">
+                      <span>Dots Chart</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="dep_C1" value="1" checked="checked">
+                      <span>Line Chart</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="dep_C1" value="2">
+                      <span>Bar Chart</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div id="t_C1" class="form-group" role="radiogroup">
+                  <label class="control-label" id="t_C1-label" for="t_C1">
+                    <h4 style="color: #242B84">Depiction Range</h4>
+                  </label>
+                  <app-range-slide-two></app-range-slide-two>
+                </div>
+
+                <div id="t_C1" class="form-group" role="radiogroup">
+                  <label class="control-label" id="t_C1-label" for="t_C1">
+                    <h4 style="color: #242B84">Release by</h4>
+                  </label>
+                  <div class="shiny-options-group">
+                    <label class="radio-inline">
+                      <input type="radio" name="relby_C1" value="1">
+                      <span>Month</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="relby_C1" value="2" checked="checked">
+                      <span>Quarter</span>
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="relby_C1" value="3">
+                      <span>Season</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div id="t_C1" class="form-group" role="radiogroup">
+                  <label class="control-label" id="t_C1-label" for="t_C1">
+                  </label>
+                  <div class="shiny-options-group">
+                    <label class="checkbox-inline">
+                      <input type="checkbox" name="qu_C1" value="1">
+                      <span>1</span>
+                    </label>
+                    <label class="checkbox-inline">
+                      <input type="checkbox" name="qu_C1" value="2" checked="checked">
+                      <span>2</span>
+                    </label>
+                    <label class="checkbox-inline">
+                      <input type="checkbox" name="qu_C1" value="3">
+                      <span>3</span>
+                    </label>
+                    <label class="checkbox-inline">
+                      <input type="checkbox" name="qu_C1" value="4">
+                      <span>4</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="btn-select-checkbox">
+                  <button style="width: auto;" id="selectall_qu_D1" type="button"
+                    class="btn btn-info action-button btn-sm shiny-bound-input">Select/Deselect all</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <!-- Content for the second column -->
+      <div class="bg-light p-3">
+        <div id="inst_C1"
+          class="form-group shiny-input-checkboxgroup shiny-input-container shiny-input-container-inline shinyjs-resettable shiny-bound-input"
+          role="group" aria-labelledby="inst_C1-label" data-shinyjs-resettable-id="inst_C1"
+          data-shinyjs-resettable-type="CheckboxGroup" data-shinyjs-resettable-value="[]">
+          <label class="control-label" id="inst_C1-label" for="inst_C1">
+            <h4 style="color: #242B84">Institutes (max. 10)</h4>
+          </label>
+          <div class="shiny-options-group">
+            <label class="checkbox-inline">
+              <input type="checkbox" name="inst_C1" value="BBK" [(ngModel)]="selectedChecbox">
+              <span>BBK</span>
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" name="inst_C2" value="BMWK" [(ngModel)]="selectedChecbox">
+              <span>BMWK</span>
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" name="inst_C3" value="DIW" [(ngModel)]="selectedChecbox">
+              <span>DIW</span>
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" name="inst_C4" value="EC" [(ngModel)]="selectedChecbox">
+              <span>EC</span>
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" name="inst_C5" value="ECB" [(ngModel)]="selectedChecbox">
+              <span>ECB</span>
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" name="inst_C6" value="GD" [(ngModel)]="selectedChecbox">
+              <span>GD</span>
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" name="inst_C7" value="HRI" [(ngModel)]="selectedChecbox">
+              <span>HRI</span>
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" name="inst_C8" value="HWWI/HWWA" [(ngModel)]="selectedChecbox">
+              <span>HWWI/HWWA</span>
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" name="inst_C9" value="ifo" [(ngModel)]="selectedChecbox">
+              <span>ifo</span>
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" name="inst_C10" value="IfW" [(ngModel)]="selectedChecbox">
+              <span>IfW</span>
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" name="inst_C11" value="IMF">
+              <span>IMF</span>
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" name="inst_C12" value="IMK/WSI">
+              <span>IMK/WSI</span>
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" name="inst_C13" value="IW">
+              <span>IW</span>
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" name="inst_C14" value="IWH">
+              <span>IWH</span>
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" name="inst_C15" value="OECD">
+              <span>OECD</span>
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" name="inst_C16" value="RWI">
+              <span>RWI</span>
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" name="inst_C1" value="SVR">
+              <span>SVR</span>
+            </label>
+          </div>
+        </div>
+        <div class="shiny-split-layout">
+          <div style="width: 25%;">
+            <button style="width: auto;" id="selectall_C1" type="button"
+              class="btn btn-info action-button btn-sm shiny-bound-input">Deselect all</button>
+          </div>
+          <div style="width: 25%;">
+            <div class="form-group shiny-input-container">
+              <div class="checkbox">
+                <label>
+                  <input id="cal_C1" type="checkbox" data-shinyjs-resettable-id="cal_C1"
+                    data-shinyjs-resettable-type="Checkbox" data-shinyjs-resettable-value="false"
+                    class="shinyjs-resettable shiny-bound-input">
+                  <span style="padding-left: 10px;">Calendar Adjusted</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div style="width: 50%;">
+            <div id="obse_C1"
+              class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline shinyjs-resettable shiny-bound-input"
+              role="radiogroup" aria-labelledby="obse_C1-label" data-shinyjs-resettable-id="obse_C1"
+              data-shinyjs-resettable-type="RadioButtons" data-shinyjs-resettable-value="1">
+              <label class="control-label shiny-label-null" for="obse_C1" id="obse_C1-label"></label>
+              <div class="shiny-options-group">
+                <label class="radio-inline">
+                  <input type="radio" name="obse_C1" value="1" checked="checked">
+                  <span>First Release</span>
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="obse_C1" value="2">
+                  <span>Current Value</span>
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="obse_C1" value="4">
+                  <span>Both</span>
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="obse_C1" value="3">
+                  <span>No Observed Data</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h4 style="color: #242B84">Forecasts</h4>
+        <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions">
+        </highcharts-chart>
+        <div class="information">
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a #tab1Link class="nav-link active" id="tab-1" data-bs-toggle="tab" href="" role="tab">
+                Errors
+              </a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a #tab2Link class="nav-link" id="tab-2" data-bs-toggle="tab" href="" role="tab"
+                aria-controls="tab-2-content" aria-selected="false">
+                Errors (comparable)
+              </a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a #tab2Link class="nav-link" id="tab-2" data-bs-toggle="tab" href="" role="tab"
+                aria-controls="tab-2-content" aria-selected="false">
+                Forecasts
+              </a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a #tab2Link class="nav-link" id="tab-2" data-bs-toggle="tab" href="" role="tab"
+                aria-controls="tab-2-content" aria-selected="false">
+                Real-Time Data
+              </a>
+            </li>
+          </ul>
+          <div class="download">
+            <a id="dl3" class="btn btn-default shiny-download-link btn-sm shiny-bound-output"
+              href="session/163f0a86882d246f0d9352ac8d8e7239/download/dl3?w=992257e5" target="_blank" download=""
+              type="info" aria-live="polite">
+              <i class="fa fa-download" role="presentation" aria-label="download icon"></i>
+              Download
+            </a>
+            <table id="example" class="display" style="width:98%">
+              <thead>
+                  <tr>
+                      <th>Institute</th>
+                      <th>Mean Error</th>
+                      <th>Mean Aboslute Error</th>
+                      <th>Root Mean Squared Error</th>
+                      <th>n</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let comp of myComponent">
+                      <td>{{comp.name}}</td>
+                      <td>{{comp.position}}</td>
+                      <td>{{comp.office}}</td>
+                      <td>{{comp.startDate}}</td>
+                      <td>{{comp.salary}}</td>
+                  </tr>
+              </tbody>
+              <tfoot>
+                  <tr>
+                    <th>Institute</th>
+                    <th>Mean Error</th>
+                    <th>Mean Aboslute Error</th>
+                    <th>Root Mean Squared Error</th>
+                    <th>n</th>
+                  </tr>
+              </tfoot>
+      </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,122 @@
+.container-fluid {
+    padding-top: 55px;
+    .well {
+        min-height: 20px;
+        padding: 19px;
+        margin-bottom: 20px;
+        background-color: #f5f5f5;
+        border: 1px solid #e3e3e3;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    }
+    label {
+        display: inline-block;
+        max-width: 100%;
+        margin-bottom: 5px;
+        // font-weight: 700;
+    }
+    .checkbox-inline, .radio-inline {
+        position: relative;
+        display: inline-block;
+        padding-left: 20px;
+        margin-bottom: 0;
+        font-weight: 400;
+        vertical-align: middle;
+        cursor: pointer;
+        span {
+            margin-left: 10px;
+        }
+    }
+    .checkbox-inline+.checkbox-inline, .radio-inline+.radio-inline {
+        margin-top: 0;
+    }
+    .btn-sm {
+        background-color: rgb(36, 43, 132);
+        color: white;
+        border-color: rgb(36, 43, 132);
+    }
+    .btn-select-checkbox{
+        padding-left: 18px;
+        padding-top: 10px;
+    }
+
+    .shiny-split-layout {
+        width: 100%;
+        white-space: nowrap;
+        // display:flex;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    .checkbox {
+        padding-top: 10px;
+    }
+
+    #chart {
+        max-width: 650px;
+        margin: 35px auto;
+      }
+      
+      .information {
+        padding-top: 40px;
+        .download {
+            padding-top: 10px;
+        }
+    }
+
+    p {
+        font-family: Lato;
+      }
+      
+      .toolbar-app{
+        margin-bottom: 50px;
+        background-color: #e5edf3;
+      }
+      
+      .footer-app {
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: black;
+        color: white;
+        text-align: center;
+        height: 130px;
+        margin-top: 100px;
+        padding: 20px;
+        position: fixed; 
+        right: 0
+      }
+      
+      @media screen and (max-height: 820px) {
+      .footer-app  {
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: black;
+        color: white;
+        text-align: center;
+        height: 130px;
+        margin-top: 100px;
+        padding: 20px;
+        position: static; 
+        right: 0
+      }
+      }
+      
+      @media screen and (min-width: 0px) and (max-width: 500px) {
+      .footer-app {
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: black;
+        color: white;
+        text-align: center;
+        height: 130px;
+        margin-top: 100px;
+        padding: 20px;
+        position: static; 
+        right: 0
+      }
+      }
+}
